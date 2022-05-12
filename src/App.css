@@ -1,19 +1,9 @@
+/* General styling */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+.App-body {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,15 +14,85 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Misc */
+.db {
+  display: block;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.link-button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-family: arial, sans-serif;
+  color: rgb(24, 135, 191);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1.25em;
+}
+
+/* Questions styling */
+.question-wrapper {
+  display: flex;
+  font-size: 1.25em;
+}
+
+.question-wrapper > .question {
+  margin-right: 1rem;
+}
+
+.question-wrapper > .answer.positive {
+  color: greenyellow;
+}
+
+.question-wrapper > .answer.negative {
+  color: red;
+}
+
+.question-wrapper > .answer.unsure {
+  color: orange;
+}
+
+/* Calendar styling */
+.react-calendar .react-calendar__navigation {
+  margin-bottom: 0;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  color: black;
+  text-decoration-color: black;
+}
+
+.react-calendar__tile.calendar-tile-working {
+  background-color: #ffbebe;
+}
+
+.react-calendar__tile.calendar-tile-working:enabled:hover, .react-calendar__tile.calendar-tile-working:enabled:focus {
+  background-color: #f5e3e3;
+}
+
+.react-calendar__tile.calendar-tile-day-off {
+  background-color: #d1ffbe;
+}
+
+.react-calendar__tile.calendar-tile-day-off:enabled:hover, .react-calendar__tile.calendar-tile-day-off:enabled:focus {
+  background-color: #eafbe2;
+}
+
+/* Transitions */
+.fade-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }
