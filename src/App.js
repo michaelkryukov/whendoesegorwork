@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import { CSSTransition } from 'react-transition-group';
 import Calendar from 'react-calendar';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const FIRST_WORKING_DAY_AFTER_DAYS_OFF = new Date(Date.parse('2022-05-07'));
 const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
@@ -17,9 +18,11 @@ function doesEgorWork(date) {
 
 function getThisMonday() {
   const now = new Date();
-  const result = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
-  result.setUTCDate(1);
-  return result;
+  const nowUtc = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+  if (nowUtc.getUTCDay() === 0) {
+    return new Date(nowUtc.valueOf() + MILLISECONDS_IN_DAY * 6);
+  }
+  return new Date(nowUtc.valueOf() + MILLISECONDS_IN_DAY * (1 - nowUtc.getUTCDay()));
 }
 
 function getNextMonday() {
@@ -95,9 +98,9 @@ function getQuestionsAndAnswers() {
 function answerToColorClass(answer) {
   switch (answer) {
     case 'Yes':
-      return 'positive';
-    case 'No':
       return 'negative';
+    case 'No':
+      return 'positive';
     default:
       return 'unsure';
   }
@@ -105,17 +108,19 @@ function answerToColorClass(answer) {
 
 function Question({ text, answer }) {
   const answerColorClass = answerToColorClass(answer);
+  const { t } = useTranslation();
 
   return (
     <div className='question-wrapper'>
-      <div className={`question ${answerColorClass}`}>{text}</div>
-      <div className={`answer ${answerColorClass}`}>{answer}</div>
+      <div className={`question ${answerColorClass}`}>{t(text)}</div>
+      <div className={`answer ${answerColorClass}`}>{t(answer)}</div>
     </div>
   );
 }
 
 function App() {
   const [calendarIsShown, setCalendarIsShown] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div className='App'>
@@ -126,7 +131,7 @@ function App() {
               return <Question key={question.text} {...question} />;
             })}
             <button className='link-button db' onClick={() => setCalendarIsShown(!calendarIsShown)}>
-              More details
+              {t('More details')}
             </button>
           </div>
         </CSSTransition>
@@ -140,7 +145,7 @@ function App() {
               }}
             />
             <button className='link-button' onClick={() => setCalendarIsShown(!calendarIsShown)}>
-              Less details
+              {t('Less details')}
             </button>
           </div>
         </CSSTransition>
