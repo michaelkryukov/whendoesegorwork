@@ -27,13 +27,13 @@
   color: rgb(24, 135, 191);
   text-decoration: underline;
   cursor: pointer;
-  font-size: 1.25em;
+  font-size: 1em;
 }
 
 /* Questions styling */
 .question-wrapper {
   display: flex;
-  font-size: 1.25em;
+  font-size: 1em;
 }
 
 .question-wrapper > .question {
