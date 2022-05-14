@@ -20,7 +20,7 @@ function getThisMonday() {
   const now = new Date();
   const nowUtc = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
   if (nowUtc.getUTCDay() === 0) {
-    return new Date(nowUtc.valueOf() + MILLISECONDS_IN_DAY * 6);
+    return new Date(nowUtc.valueOf() - MILLISECONDS_IN_DAY * 6);
   }
   return new Date(nowUtc.valueOf() + MILLISECONDS_IN_DAY * (1 - nowUtc.getUTCDay()));
 }
