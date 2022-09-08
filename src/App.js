@@ -6,7 +6,6 @@ import Calendar from 'react-calendar';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const FIRST_WORKING_DAY_AFTER_DAYS_OFF = new Date(Date.parse('2022-05-07'));
 const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
 
 function doesEgorWork(date) {
