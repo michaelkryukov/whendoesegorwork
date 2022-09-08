@@ -10,10 +10,7 @@ const FIRST_WORKING_DAY_AFTER_DAYS_OFF = new Date(Date.parse('2022-05-07'));
 const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
 
 function doesEgorWork(date) {
-  const delta = date - FIRST_WORKING_DAY_AFTER_DAYS_OFF;
-  const daysDelta = delta / MILLISECONDS_IN_DAY;
-  const pairsPassed = Math.floor(daysDelta / 2);
-  return pairsPassed % 2 === 0;
+  return false;
 }
 
 function getThisMonday() {
