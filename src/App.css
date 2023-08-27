@@ -10,19 +10,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 1.3rem;
   color: white;
+  padding: 1rem;
+}
+
+/* Content */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar {
+  margin-top: 1rem;
 }
 
 /* Misc */
-.db {
-  display: block;
-}
-
 .link-button {
-  background: none!important;
+  background: none !important;
   border: none;
-  padding: 0!important;
+  padding: 0 !important;
   font-family: arial, sans-serif;
   color: rgb(24, 135, 191);
   text-decoration: underline;
@@ -36,19 +44,19 @@
   font-size: 1em;
 }
 
-.question-wrapper > .question {
+.question-wrapper>.question {
   margin-right: 1rem;
 }
 
-.question-wrapper > .answer.positive {
+.question-wrapper>.answer.positive {
   color: greenyellow;
 }
 
-.question-wrapper > .answer.negative {
+.question-wrapper>.answer.negative {
   color: red;
 }
 
-.question-wrapper > .answer.unsure {
+.question-wrapper>.answer.unsure {
   color: orange;
 }
 
@@ -66,7 +74,8 @@
   background-color: #ffbebe;
 }
 
-.react-calendar__tile.calendar-tile-working:enabled:hover, .react-calendar__tile.calendar-tile-working:enabled:focus {
+.react-calendar__tile.calendar-tile-working:enabled:hover,
+.react-calendar__tile.calendar-tile-working:enabled:focus {
   background-color: #f5e3e3;
 }
 
@@ -74,25 +83,7 @@
   background-color: #d1ffbe;
 }
 
-.react-calendar__tile.calendar-tile-day-off:enabled:hover, .react-calendar__tile.calendar-tile-day-off:enabled:focus {
+.react-calendar__tile.calendar-tile-day-off:enabled:hover,
+.react-calendar__tile.calendar-tile-day-off:enabled:focus {
   background-color: #eafbe2;
-}
-
-/* Transitions */
-.fade-enter {
-  opacity: 0;
-  transform: scale(0.9);
-}
-.fade-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 300ms, transform 300ms;
-}
-.fade-exit {
-  opacity: 1;
-}
-.fade-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
 }

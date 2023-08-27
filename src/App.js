@@ -1,15 +1,17 @@
-import './App.css';
 import 'react-calendar/dist/Calendar.css';
+import './App.css';
 
-import { CSSTransition } from 'react-transition-group';
 import Calendar from 'react-calendar';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+const FIRST_WORKING_DAY_AFTER_DAYS_OFF = new Date(Date.parse('2023-08-27'));
 const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
 
 function doesEgorWork(date) {
-  return false;
+  const delta = date - FIRST_WORKING_DAY_AFTER_DAYS_OFF;
+  const daysDelta = delta / MILLISECONDS_IN_DAY;
+  const pairsPassed = Math.floor(daysDelta / 2);
+  return pairsPassed % 2 === 0;
 }
 
 function getThisMonday() {
@@ -115,24 +117,16 @@ function Question({ text, answer }) {
 }
 
 function App() {
-  const [calendarIsShown, setCalendarIsShown] = useState(false);
-  const { t } = useTranslation();
-
   return (
     <div className='App'>
       <div className='App-body'>
-        <CSSTransition in={!calendarIsShown} timeout={200} unmountOnExit classNames='fade'>
+        <div className='content-wrapper'>
           <div>
             {getQuestionsAndAnswers().map((question) => {
               return <Question key={question.text} {...question} />;
             })}
-            <button className='link-button db' onClick={() => setCalendarIsShown(!calendarIsShown)}>
-              {t('More details')}
-            </button>
           </div>
-        </CSSTransition>
-        <CSSTransition in={calendarIsShown} timeout={200} unmountOnExit classNames='fade'>
-          <div>
+          <div className='calendar'>
             <Calendar
               value={null}
               tileClassName={({ date }) => {
@@ -140,11 +134,8 @@ function App() {
                 return doesEgorWork(properDate) ? 'calendar-tile-working' : 'calendar-tile-day-off';
               }}
             />
-            <button className='link-button' onClick={() => setCalendarIsShown(!calendarIsShown)}>
-              {t('Less details')}
-            </button>
           </div>
-        </CSSTransition>
+        </div>
       </div>
     </div>
   );
